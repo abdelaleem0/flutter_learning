@@ -1,0 +1,20 @@
+if yoc put BlocProvider in Main The BlocProvider not be create unless you use BlocProvider.of(Context),
+untill this the blocProvider Not Created.
+
+
+Using BlocProvider only where it is needed helps keep the code organized and
+ reduces unnecessary coupling between components of your application.
+
+When you add all BlocProvider instances in the main file,
+it can make the codebase difficult to navigate,
+especially as your application grows in size and complexity. This can make it harder to maintain and debug the code.
+
+In contrast, if you only use BlocProvider where it is actually needed,
+ it makes it easier to understand which BLoCs are used in each section of the app, and how they are used.
+ This can make it easier to modify and maintain the codebase over time.
+
+Additionally, if you add all BlocProvider instances in the main file,
+ it may create unnecessary instances of BLoCs that are not needed in certain parts of the app.
+  (^^^^^^^^^^^^^^^This can lead to unnecessary memory usage and slow down the performance of your app^^^^^^^^^^^^^^^^^).
+
+Therefore, it is generally a good practice to use BlocProvider only where it is actually needed in order to keep the code organized and maintainable.
