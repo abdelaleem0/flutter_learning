@@ -1,74 +1,34 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:ui';
-
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
-import 'dart:isolate';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:learning_flutter/oop/copy_constructor/copy_constructor_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+String? token;
 
-
-
-
-
-
-
-Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-
-  // await EasyLocalization.ensureInitialized();
-
-  await initializeService();
-
-
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => LifeCycleCubit(),)
-      ],
-      child: MaterialApp(
-        // localizationsDelegates: context.localizationDelegates,
-        // supportedLocales: context.supportedLocales,
-        // locale: context.locale,
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const CopyConstructorPage(),
-      ),
-    );
-  }
-}
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
+  await Firebase.initializeApp().then((value) async {
+    print('12121212121212121212${Firebase.initializeApp().runtimeType}');
+  });
+
 
   /// OPTIONAL, using custom notification channel id
   const AndroidNotificationChannel channel = AndroidNotificationChannel(
-    'my_foreground', // id
+    'my_foreground5', // id
     'MY FOREGROUND SERVICE', // title
     description:
-    'This channel is used for important notifications.', // description
+        'This channel is used for important notifications.', // description
     importance: Importance.low, // importance must be at low or higher level
   );
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
 
   if (Platform.isIOS) {
     // await flutterLocalNotificationsPlugin.initialize(
@@ -80,7 +40,7 @@ Future<void> initializeService() async {
 
   await flutterLocalNotificationsPlugin
       .resolvePlatformSpecificImplementation<
-      AndroidFlutterLocalNotificationsPlugin>()
+          AndroidFlutterLocalNotificationsPlugin>()
       ?.createNotificationChannel(channel);
 
   await service.configure(
@@ -92,7 +52,7 @@ Future<void> initializeService() async {
       autoStart: true,
       isForegroundMode: true,
 
-      notificationChannelId: 'my_foreground',
+      notificationChannelId: 'my_foreground5',
       initialNotificationTitle: 'AWESOME SERVICE',
       initialNotificationContent: 'Initializing',
       foregroundServiceNotificationId: 888,
@@ -111,6 +71,7 @@ Future<void> initializeService() async {
 
   service.startService();
 }
+
 @pragma('vm:entry-point')
 Future<bool> onIosBackground(ServiceInstance service) async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -138,7 +99,7 @@ void onStart(ServiceInstance service) async {
 
   /// OPTIONAL when use custom notification
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
+      FlutterLocalNotificationsPlugin();
 
   if (service is AndroidServiceInstance) {
     service.on('setAsForeground').listen((event) {
@@ -153,39 +114,38 @@ void onStart(ServiceInstance service) async {
   service.on('stopService').listen((event) {
     service.stopSelf();
   });
+  if (Firebase.initializeApp().runtimeType==Future<FirebaseApp>) {
+    print('qqqqqqqqqq');
+    await  FirebaseMessaging.instance.getToken().then((value) => token=value);
 
+  }
+//db9ZlKmoQNC8rjrLtrl63P:APA91bF-y-1VP5kSasGlXrysWCQL6ikPZBAtooTrOcjCxcO1nBjWtypLHkihM2b5BG6xP9dG52x6m84BWPA2MLDqPbUS1YWmP4ei2839dgM4beobE6eU_Dx6EwC__ndcApVhkKmrZx1A
   // bring to foreground
-  Timer.periodic(const Duration(seconds: 1), (timer) async {
+  Timer.periodic(const Duration(seconds: 5), (timer) async {
     if (service is AndroidServiceInstance) {
       if (await service.isForegroundService()) {
         /// OPTIONAL for use custom notification
         /// the notification id must be equals with AndroidConfiguration when you call configure() method.
-        flutterLocalNotificationsPlugin.show(
-          888,
-          'COOL SERVICE',
-          'Awesome ${DateTime.now()}',
-          const NotificationDetails(
-            android: AndroidNotificationDetails(
-              'my_foreground',
-              'MY FOREGROUND SERVICE',
-              icon: 'ic_bg_service_small',
-              ongoing: true,
-            ),
-          ),
-        );
-
-        // if you don't using custom notification, uncomment this
-        // service.setForegroundNotificationInfo(
-        //   title: "My App Service",
-        //   content: "Updated at ${DateTime.now()}",
+        //    await pushNotification(token: token??'', content: "11111111111");
+           print('@@@@@@@@@@@@@@@@@@@@@${token}');
+        print('FLUTTER BACKGROUND SERVICE: ${DateTime.now()}');
+        // flutterLocalNotificationsPlugin.show(
+        //   888,
+        //   'COOL SERVICE',
+        //   'Awesome ${DateTime.now()}',
+        //   const NotificationDetails(
+        //     android: AndroidNotificationDetails(
+        //       'my_foreground5',
+        //       'MY FOREGROUND SERVICE',
+        //       icon: 'ic_bg_service_small',
+        //       ongoing: true,
+        //     ),
+        //   ),
         // );
+
       }
     }
 
-    /// you can see this log in logcat
-    print('FLUTTER BACKGROUND SERVICE: ${DateTime.now()}');
-
-    // test using external plugin
     final deviceInfo = DeviceInfoPlugin();
     String? device;
     if (Platform.isAndroid) {
