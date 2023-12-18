@@ -1,3 +1,4 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_cubit.dart';
@@ -61,6 +62,8 @@ class LifeCyclePage extends StatefulWidget {
 }
 
 class LifeCyclePageState extends State<LifeCyclePage> {
+  late final BuildContext contextInit;
+  late final BuildContext contextDependencies;
 
   @override
   void initState() {
@@ -86,13 +89,13 @@ class LifeCyclePageState extends State<LifeCyclePage> {
 
   @override
   void deactivate() {
-    print('deactivate');
+    print('deactivate ');
     super.deactivate();
   }
 
   @override
   void dispose() {
-    print('dispose');
+    print('dispose in ');
 
     super.dispose();
   }
@@ -108,4 +111,14 @@ class LifeCyclePageState extends State<LifeCyclePage> {
       ],
     );
   }
+}
+class PlayerEntity extends Equatable{
+  final String name;
+  final int age;
+  final bool married;
+
+  const PlayerEntity({required this.name, required this.age, required this.married});
+
+  @override
+  List<Object?> get props => [name,age,married];
 }
