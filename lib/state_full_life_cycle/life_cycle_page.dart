@@ -70,6 +70,7 @@ class LifeCyclePageState extends State<LifeCyclePage> {
     //ToDo context=> created
     //ToDo : LifeCyclePage(dirty, state: LifeCyclePageState#c74e8(lifecycle state: created);
     // ToDo :context is created but in initialized yet , can't use context
+    // print(Theme.of(context));           // ERROR
     super.initState();
   }
 
@@ -78,6 +79,7 @@ class LifeCyclePageState extends State<LifeCyclePage> {
     //ToDo context=> initialized
     //ToDo : LifeCyclePage(dirty, state: LifeCyclePageState#c74e8(lifecycle state: initialized);
     // ToDo :context is initialized , can use context
+    // print(Theme.of(context));           // OK
     super.didChangeDependencies();
   }
 
