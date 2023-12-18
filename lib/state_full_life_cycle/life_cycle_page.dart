@@ -1,95 +1,126 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_cubit.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_state.dart';
-
-class Parent extends StatelessWidget {
-  const Parent({Key? key}) : super(key: key);
+class ParentPage extends StatelessWidget {
+  const ParentPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => LifeCycleCubit(),
-      child: const LifeCyclePage(),
+      child: const FirstLifeCyclePage(),
     );
   }
 }
 
-class LifeCyclePage extends StatefulWidget {
+class FirstLifeCyclePage extends StatefulWidget {
+  const FirstLifeCyclePage({super.key});
 
-  const LifeCyclePage({Key? key}) : super(key: key);
+  @override
+  State<FirstLifeCyclePage> createState() => _FirstLifeCyclePageState();
+}
+
+class _FirstLifeCyclePageState extends State<FirstLifeCyclePage> {
+  final PlayerEntity firstPlayer = const PlayerEntity(name: "Abdelaleem", age: 25, married: true);
+  final PlayerEntity secondPlayer = const PlayerEntity(name: "medo", age: 10, married: false);
+  bool isFirstPlayer=true;
+  void getPlayer(){
+    isFirstPlayer=!isFirstPlayer;
+    setState(() {
+
+    });
+
+  }
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Center(
+            child: LifeCyclePage(
+              player: isFirstPlayer ? firstPlayer : secondPlayer,
+            ),
+          ),
+          MaterialButton(onPressed:  getPlayer,
+          color: Colors.black),
+        ],
+      ),
+    );
+  }
+}
+
+
+
+class LifeCyclePage extends StatefulWidget {
+  final PlayerEntity player;
+
+  const  LifeCyclePage({Key? key, required this.player}) : super(key: key);
 
   @override
   LifeCyclePageState createState() => LifeCyclePageState();
 }
 
 class LifeCyclePageState extends State<LifeCyclePage> {
+
   @override
   void initState() {
-    print('initState in first page');
+    print('initState');
     super.initState();
   }
 
 
-
-
   @override
-  void dispose() {
-    print('dispose in first page');
-
-    super.dispose();
-
+  void didChangeDependencies() {
+    print('didChangeDependencies ');
+    super.didChangeDependencies();
   }
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocBuilder<LifeCycleCubit, LifeCycleState>(
-        builder: (context, state) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Center(child: InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) =>const LifeCycleSecondPage() ,));
-                },
-
-                  child: Text(state.value.toString()))),
-            ],
-          );
-        },
-      ),
-    );
-  }
-}
-class LifeCycleSecondPage extends StatefulWidget {
-  const LifeCycleSecondPage({Key? key}) : super(key: key);
 
   @override
-  State<LifeCycleSecondPage> createState() => _LifeCycleSecondPageState();
-}
-
-class _LifeCycleSecondPageState extends State<LifeCycleSecondPage> {
-  @override
-  void initState() {
-    print('initState second page ');
-    super.initState();
-  }
-  @override
-  void dispose() {
-    print('dispose in second page');
-    super.dispose();
+  void didUpdateWidget(covariant LifeCyclePage oldWidget) {
+    print('didUpdateWidget ');
+    super.didUpdateWidget(oldWidget);
   }
   @override
   void deactivate() {
-    print('deactivate in second page');
+    print('deactivate ');
     super.deactivate();
   }
   @override
+  void dispose() {
+    print('dispose in ');
+
+    super.dispose();
+
+  }
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-       appBar: AppBar(),
+    print('build=====> ${widget.player.name}');
+    return Column(
+      children: [
+        Text(widget.player.name),
+        Text(widget.player.age.toString()),
+        Text(widget.player.married.toString()),
+      ],
     );
   }
 }
 
+class PlayerEntity extends Equatable {
+  final String name;
+
+  final int age;
+
+  final bool married;
+
+  const PlayerEntity(
+      {required this.name, required this.age, required this.married});
+
+  @override
+  List<Object?> get props => [name, age, married];
+
+}
