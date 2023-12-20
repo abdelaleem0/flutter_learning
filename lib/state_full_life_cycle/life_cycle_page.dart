@@ -85,7 +85,8 @@ class LifeCyclePageState extends State<LifeCyclePage> {
 
   @override
   void didUpdateWidget(covariant LifeCyclePage oldWidget) {
-    print('didUpdateWidget=========');
+    print('didUpdateWidget=========${oldWidget.player}');
+    print('didUpdateWidget=========${widget.player}');
     super.didUpdateWidget(oldWidget);
   }
 
@@ -98,7 +99,6 @@ class LifeCyclePageState extends State<LifeCyclePage> {
   @override
   void dispose() {
     print('dispose in ');
-
     super.dispose();
   }
 
