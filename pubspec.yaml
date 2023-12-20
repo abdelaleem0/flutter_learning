@@ -46,6 +46,8 @@ dependencies:
   firebase_messaging:
   firebase_core:
   http:
+  flutter_hooks: ^0.20.3
+
 
 
 dev_dependencies:

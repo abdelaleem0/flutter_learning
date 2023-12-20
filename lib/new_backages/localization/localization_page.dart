@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/new_backage/localization/localization_widget.dart';
+import 'package:learning_flutter/new_backages/localization/localization_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
