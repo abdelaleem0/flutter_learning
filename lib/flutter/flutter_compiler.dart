@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
-class FlutterCompiler extends StatefulWidget {
-  const FlutterCompiler({Key? key}) : super(key: key);
+class FlutterCompilerPage extends StatefulWidget {
+  const FlutterCompilerPage({Key? key}) : super(key: key);
 
   @override
-  State<FlutterCompiler> createState() => _FlutterCompilerState();
+  State<FlutterCompilerPage> createState() => _FlutterCompilerPageState();
 }
 
-class _FlutterCompilerState extends State<FlutterCompiler> {
+class _FlutterCompilerPageState extends State<FlutterCompilerPage> {
   bool view=false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        actions: [
+          TextButton(onPressed: (){
+            setState(() {
+              view=!view;
+            });
+          }, child: Text("change")),
+        ],
+      ),
       body:view? FirstConditionPage() :SecondConditionPage(),
     );
   }
@@ -22,6 +31,7 @@ class _FlutterCompilerState extends State<FlutterCompiler> {
 
 
 class FirstConditionPage extends StatelessWidget {
+
   const FirstConditionPage({Key? key}) : super(key: key);
 
   @override

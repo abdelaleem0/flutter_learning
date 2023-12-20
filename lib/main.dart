@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:learning_flutter/flutter/flutter_compiler.dart';
 import 'package:learning_flutter/new_backages/flutter_hooks/flutter_hooks_page.dart';
 import 'package:learning_flutter/oop/copy_constructor/copy_constructor_page.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_page.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-       home: FlutterHooksPage(),
+       home: FlutterCompilerPage(),
           ),
 
 
