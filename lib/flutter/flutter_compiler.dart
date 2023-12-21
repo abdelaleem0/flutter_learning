@@ -9,7 +9,6 @@ class FlutterCompilerPage extends StatefulWidget {
 
 class _FlutterCompilerPageState extends State<FlutterCompilerPage> {
   bool view=false;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,10 +18,12 @@ class _FlutterCompilerPageState extends State<FlutterCompilerPage> {
             setState(() {
               view=!view;
             });
-          }, child: Text("change")),
+          }, child: const Text("setState",style: TextStyle(
+            color: Colors.yellow
+          ),)),
         ],
       ),
-      body:view? FirstConditionPage() :SecondConditionPage(),
+      body:view ? const FirstConditionPage():const SecondConditionPage(),
     );
   }
 }
@@ -36,8 +37,8 @@ class FirstConditionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('FirstCondition');
-    return const Center(child: Text("FirstCondition "));
+    print('First Condition');
+    return const Center(child: Text("First Condition "));
   }
 }
 class SecondConditionPage extends StatelessWidget {
@@ -45,8 +46,8 @@ class SecondConditionPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('SecondCondition');
+    print('Second Condition');
 
-    return const Center(child: Text("SecondCondition"));
+    return const Center(child: Text("Second Condition"));
   }
 }
