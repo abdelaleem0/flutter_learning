@@ -11,32 +11,14 @@ class AsynchronousExecution extends StatefulWidget {
 }
 
 class _AsynchronousExecutionState extends State<AsynchronousExecution> {
-  void function() async {
+  void function()  {
     print('welcome');
     Future.delayed(const Duration(seconds: 10))
         .then((value) => print('print after 10s'));
     Future.delayed(const Duration(microseconds: 0))
         .then((value) => print('print after 0s'));
     print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
-    print('end');
+
   }
 
   void firstFunction() {
