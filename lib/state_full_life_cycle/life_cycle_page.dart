@@ -101,9 +101,13 @@ class LifeCyclePageState extends State<LifeCyclePage> {
     print('dispose in ');
     super.dispose();
   }
+  void getName(int vv, [int? index=9]){
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    getName(1,);
     //ToDo : LifeCyclePage(dirty, state: LifeCyclePageState#c74e8)
     return Column(
       children: [
