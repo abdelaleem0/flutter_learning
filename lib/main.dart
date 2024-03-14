@@ -11,8 +11,11 @@ import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:learning_flutter/flutter/flutter_compiler.dart';
+import 'package:learning_flutter/flutter_widgets/listView_vs_listview_builder.dart';
 import 'package:learning_flutter/general/asynchronous_execution_vs_multithreading.dart';
 import 'package:learning_flutter/new_backages/flutter_hooks/flutter_hooks_page.dart';
+import 'package:learning_flutter/new_backages/flutter_mobx/counter_store.dart';
+import 'package:learning_flutter/new_backages/flutter_mobx/flutter_mobx.dart';
 import 'package:learning_flutter/oop/const_vs_final.dart';
 import 'package:learning_flutter/oop/copy_constructor/copy_constructor_page.dart';
 import 'package:learning_flutter/soild_principles/liskov_substitution.dart';
@@ -50,8 +53,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-        ),
-       home: LiskovSubstitutionPage(),
+        ),home: CounterExample.initializeDependency(),
           ),
 
 

@@ -14,7 +14,7 @@ class _ListsTypesState extends State<ListsTypes> {
   @override
 
   void initState() {
-    for(int i=0; i<100; i++){
+    for(int i=0; i<600; i++){
       widgets.add( const Containers());
     }
     super.initState();
@@ -22,10 +22,11 @@ class _ListsTypesState extends State<ListsTypes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: widgets,
-        ),
+      body: ListView.builder(
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return widgets[index];
+        },
       )
     );
   }
@@ -35,7 +36,7 @@ class Containers extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print( ' Build ');
+    print( '<Build>');
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
