@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:learning_flutter/dart_json_converter/dart_to_json.dart';
 import 'package:learning_flutter/new_backages/flutter_mobx/counter_store.dart';
 
 class CounterExample extends StatelessWidget {
