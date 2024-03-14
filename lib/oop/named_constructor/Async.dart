@@ -3,42 +3,57 @@ import 'package:equatable/equatable.dart';
 class Async<T> extends Equatable {
   final T? data;
   final String? errorMessage;
-  final bool _successWithoutData;
-  final bool? _loading;
+  final bool successWithoutData;
+  final bool? loading;
 
   const Async._(
-      this.data, this.errorMessage, this._successWithoutData, this._loading);
+      {required this.data,
+      required this.errorMessage,
+      required this.successWithoutData,
+      required this.loading});
 
-  bool get isLoading => _loading ?? false;
+  const Async.initial()
+      : this._(
+            data: null,
+            errorMessage: null,
+            successWithoutData: false,
+            loading: null);
+
+  const Async.loading()
+      : this._(
+            data: null,
+            errorMessage: null,
+            successWithoutData: false,
+            loading: true);
+
+  const Async.success(T data)
+      : this._(
+            data: data,
+            errorMessage: null,
+            successWithoutData: false,
+            loading: false);
+
+  const Async.successWithoutData()
+      : this._(
+            data: null,
+            errorMessage: null,
+            successWithoutData: true,
+            loading: false);
+
+  const Async.failure(String errorMessage)
+      : this._(
+            data: null,
+            errorMessage: errorMessage,
+            successWithoutData: false,
+            loading: false);
+
+  bool get isLoading => loading ?? false;
 
   bool get isSuccess =>
-      (_successWithoutData || data != null) && (errorMessage == null);
+      (successWithoutData || data != null) && (errorMessage == null);
 
   bool get isFailure => errorMessage != null;
 
-  const Async.loading() : this._(null, null, false, true);
-  const Async.success(T data) : this._(data, null, false, false);
-  const Async.successWithoutData() : this._(null, null, true, false);
-  const Async.failure(String errorMessage)
-      : this._(null, errorMessage, false, false);
-  const Async.initial() : this._(null, null, false, null);
-
   @override
-  List<Object?> get props =>
-      [data, errorMessage, _successWithoutData, _loading];
+  List<Object?> get props => [data, errorMessage, successWithoutData, loading];
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

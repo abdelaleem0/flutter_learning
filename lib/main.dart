@@ -10,6 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:learning_flutter/dart_json_converter/data_model_page.dart';
 import 'package:learning_flutter/flutter/flutter_compiler.dart';
 import 'package:learning_flutter/flutter_widgets/listView_vs_listview_builder.dart';
 import 'package:learning_flutter/general/asynchronous_execution_vs_multithreading.dart';
@@ -53,7 +54,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-        ),home: CounterExample.initializeDependency(),
+        ),home: DataModelPage(),
           ),
 
 
