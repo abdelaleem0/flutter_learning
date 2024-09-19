@@ -7,11 +7,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:learning_flutter/dart_json_converter/data_model_page.dart';
 import 'package:learning_flutter/flutter/flutter_compiler.dart';
+import 'package:learning_flutter/flutter_riverpod/flutter_riverpod_page.dart';
 import 'package:learning_flutter/flutter_widgets/listView_vs_listview_builder.dart';
 import 'package:learning_flutter/general/asynchronous_execution_vs_multithreading.dart';
 import 'package:learning_flutter/new_backages/flutter_hooks/flutter_hooks_page.dart';
@@ -54,7 +56,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-        ),home: DataModelPage(),
+        ),home: FirstPage(),
           ),
 
 

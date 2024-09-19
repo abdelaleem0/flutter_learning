@@ -1,0 +1,3 @@
+the riverpod the sample  stateManagement use this  :-
+1- if your page not need more states in page
+2- if you created two provider and need data from both in the same page , riverpod is good stateManagement to get data from two sources
