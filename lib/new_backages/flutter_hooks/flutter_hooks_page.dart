@@ -74,7 +74,7 @@ class FlutterHooksPage extends HookWidget {
             child: Text(
               "Click to Navigator",
               style:
-                  TextStyle(color: Theme.of(context).errorColor, fontSize: 30),
+                  TextStyle(color: Colors.red, fontSize: 30),
             ),
           ),
           ChildrenPage(),
@@ -100,7 +100,7 @@ class SecondPage extends StatelessWidget {
             child: Text(
               "Click to BacK",
               style:
-                  TextStyle(color: Theme.of(context).errorColor, fontSize: 30),
+                  TextStyle(color: Colors.red,fontSize: 30),
             ),
           ),
         ),
