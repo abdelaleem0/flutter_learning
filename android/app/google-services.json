@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "331994280197",
+    "project_id": "flutter-examples-a7037",
+    "storage_bucket": "flutter-examples-a7037.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:331994280197:android:3e3d7787adeaade3be476c",
+        "android_client_info": {
+          "package_name": "com.example.learning_flutter"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDQZQkoSjGJxnnZWxzxuOiiEGcK5_n7nRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

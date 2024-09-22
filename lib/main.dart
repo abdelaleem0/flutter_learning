@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,6 +13,7 @@ import 'package:learning_flutter/bloc/life_cycle_bloc/life_cycle_cubit.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:learning_flutter/dart_json_converter/data_model_page.dart';
+import 'package:learning_flutter/firebase_options.dart';
 import 'package:learning_flutter/flutter/flutter_compiler.dart';
 import 'package:learning_flutter/flutter_riverpod/flutter_riverpod_page.dart';
 import 'package:learning_flutter/flutter_widgets/listView_vs_listview_builder.dart';
@@ -21,6 +23,7 @@ import 'package:learning_flutter/new_backages/flutter_mobx/counter_store.dart';
 import 'package:learning_flutter/new_backages/flutter_mobx/flutter_mobx.dart';
 import 'package:learning_flutter/oop/const_vs_final.dart';
 import 'package:learning_flutter/oop/copy_constructor/copy_constructor_page.dart';
+import 'package:learning_flutter/social_auth/auth_page.dart';
 import 'package:learning_flutter/soild_principles/liskov_substitution.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,11 +32,15 @@ import 'soild_principles/dependecy_inversion.dart';
 import 'state_full_life_cycle/stateLess_vs_stateFull/setState_functionality.dart';
 
 Future<void> main() async {
- User c= User(service: EmailService());
+ // User c= User(service: EmailService());
 
   WidgetsFlutterBinding.ensureInitialized();
-  await initializeService();
- c.sendMessage('hello Developer');
+  // await initializeService();
+ // c.sendMessage('hello Developer');
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
@@ -56,7 +63,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-        ),home: FirstPage(),
+        ),home: SocialAuthPage(),
           ),
 
 
