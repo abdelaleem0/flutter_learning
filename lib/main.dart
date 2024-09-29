@@ -26,6 +26,7 @@ import 'package:learning_flutter/oop/copy_constructor/copy_constructor_page.dart
 import 'package:learning_flutter/social_auth/auth_page.dart';
 import 'package:learning_flutter/soild_principles/liskov_substitution.dart';
 import 'package:learning_flutter/state_full_life_cycle/life_cycle_page.dart';
+import 'package:learning_flutter/streams/broadcast_stream.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'soild_principles/dependecy_inversion.dart';
@@ -63,7 +64,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
-        ),home: SocialAuthPage(),
+        ),home: UserStatusScreen(),
           ),
 
 
